@@ -3,6 +3,11 @@ import os
 
 from utils.pdf_reader import extract_text_from_pdf
 from utils.skill_extractor import extract_skills
+from utils.job_recommender import (
+    recommend_jobs,
+    calculate_skill_gap
+)
+from utils.resume_scorer import calculate_resume_score
 
 app = Flask(__name__)
 
@@ -20,21 +25,17 @@ def home():
 @app.route("/analyze", methods=["POST"])
 def analyze():
 
-    # Check whether a file was uploaded
     if "resume" not in request.files:
         return "No resume uploaded"
 
     file = request.files["resume"]
 
-    # Check filename
     if file.filename == "":
         return "No file selected"
 
-    # Only allow PDF
     if not file.filename.lower().endswith(".pdf"):
         return "Please upload a PDF file"
 
-    # Save uploaded PDF
     file_path = os.path.join(
         app.config["UPLOAD_FOLDER"],
         file.filename
@@ -42,16 +43,33 @@ def analyze():
 
     file.save(file_path)
 
-    # Extract text from PDF
     resume_text = extract_text_from_pdf(file_path)
 
-    # Extract skills
     skills = extract_skills(resume_text)
+
+    recommendations = recommend_jobs(resume_text)
+
+    best_job = recommendations.iloc[0]
+
+    matching_skills, missing_skills = calculate_skill_gap(
+        skills,
+        best_job["required_skills"]
+    )
+
+    resume_score = calculate_resume_score(
+    resume_text,
+    skills,
+    recommendations
+)
 
     return render_template(
         "result.html",
         skills=skills,
-        resume_text=resume_text
+        resume_text=resume_text,
+        recommendations=recommendations.to_dict("records"),
+        matching_skills=matching_skills,
+        missing_skills=missing_skills,
+        resume_score=resume_score
     )
 
 
