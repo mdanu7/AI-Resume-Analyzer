@@ -4,60 +4,72 @@ def calculate_resume_score(
     recommendations
 ):
 
-    score = 0
-
-    # -------------------------
-    # 1. Skills Score: 40 points
-    # -------------------------
+    # --------------------------------
+    # 1. SKILLS SCORE - 50%
+    # --------------------------------
 
     skill_score = min(
         len(detected_skills) * 5,
-        40
+        50
     )
 
-    score += skill_score
 
+    # --------------------------------
+    # 2. CONTENT SCORE - 20%
+    # --------------------------------
 
-    # -------------------------
-    # 2. Resume Content: 20 points
-    # -------------------------
+    text_length = len(resume_text.split())
 
-    word_count = len(resume_text.split())
+    if text_length >= 400:
 
-    if word_count >= 300:
         content_score = 20
 
-    elif word_count >= 200:
+    elif text_length >= 250:
+
         content_score = 15
 
-    elif word_count >= 100:
+    elif text_length >= 100:
+
         content_score = 10
 
     else:
+
         content_score = 5
 
-    score += content_score
 
+    # --------------------------------
+    # 3. JOB MATCH SCORE - 30%
+    # --------------------------------
 
-    # -------------------------
-    # 3. Job Compatibility: 40 points
-    # -------------------------
+    if recommendations is not None and len(recommendations) > 0:
 
-    if len(recommendations) > 0:
-
+        # recommendations is a Pandas DataFrame
         best_match = recommendations.iloc[0]["match_score"]
 
-        compatibility_score = min(
-            best_match * 0.4,
-            40
-        )
+        job_score = best_match * 0.30
 
     else:
 
-        compatibility_score = 0
+        job_score = 0
 
 
-    score += compatibility_score
+    # --------------------------------
+    # FINAL SCORE
+    # --------------------------------
+
+    final_score = (
+        skill_score
+        + content_score
+        + job_score
+    )
 
 
-    return round(score, 2)
+    # Keep score between 0 and 100
+
+    final_score = min(
+        round(final_score),
+        100
+    )
+
+
+    return final_score

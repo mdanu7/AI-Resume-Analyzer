@@ -5,10 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Resume Analysis</title>
+    <title>AI Resume Analyzer - Results</title>
 
     <style>
 
@@ -18,177 +17,578 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            color: #1e293b;
         }
 
         .container {
             width: 92%;
-            max-width: 1100px;
-            margin: 40px auto;
+            max-width: 1150px;
+            margin: auto;
+            padding: 40px 0;
         }
+
+        /* ================= HEADER ================= */
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .header h1 {
-            font-size: 36px;
-            margin-bottom: 8px;
+            margin: 0;
+            font-size: 40px;
+            color: #1e3a8a;
         }
 
         .header p {
-            color: #666;
+            color: #64748b;
+            font-size: 17px;
+            margin-top: 10px;
         }
 
-        /* SCORE */
+
+        /* ================= TOP CARDS ================= */
+
+        .top-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
 
         .score-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-            margin-bottom: 25px;
+            border-top: 5px solid #2563eb;
         }
 
         .score {
             font-size: 55px;
             font-weight: bold;
+            color: #2563eb;
             margin: 15px 0;
         }
 
-        .score-label {
-            color: #666;
+        .best-job {
+            text-align: center;
+            border-top: 5px solid #7c3aed;
         }
 
+        .best-job-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #7c3aed;
+            margin-top: 20px;
+        }
 
-        /* SECTIONS */
+        /* ================= BEST JOB MATCH ================= */
+
+.best-job {
+    border-top: 5px solid #7c3aed;
+}
+
+.best-job-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.best-job-header h3 {
+    margin: 0;
+}
+
+.best-job-header p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.best-job-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ede9fe;
+    border-radius: 12px;
+
+    font-size: 22px;
+}
+
+.best-job-name {
+    font-size: 25px;
+    font-weight: bold;
+    color: #7c3aed;
+
+    margin-top: 22px;
+}
+
+.best-match-score {
+    margin-top: 8px;
+}
+
+.best-match-score span {
+    font-size: 25px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.best-match-score small {
+    color: #64748b;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.best-job-progress {
+    width: 100%;
+    height: 10px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 12px;
+}
+
+.best-job-progress-fill {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    border-radius: 20px;
+
+    transition: width 1s ease;
+}
+
+.best-job-reason {
+    margin-top: 18px;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+.best-job-reason strong {
+    color: #334155;
+}
+
+.best-job-reason p {
+    margin: 6px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.best-job-skills {
+    margin-top: 16px;
+}
+
+.best-job-skills strong {
+    color: #334155;
+}
+
+.mini-skills {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 9px;
+}
+
+.mini-skills span {
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    padding: 6px 10px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+        /* ================= GENERAL SECTION ================= */
 
         .section {
             background: white;
-            border-radius: 16px;
-            padding: 25px;
+            padding: 28px;
+            border-radius: 18px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
         }
 
         .section h2 {
             margin-top: 0;
+            color: #1e293b;
         }
 
 
-        /* SKILLS */
+        /* ================= SKILLS ================= */
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .skill {
-            padding: 8px 14px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 9px 16px;
             border-radius: 20px;
-            background: #e8f0ff;
+            font-weight: bold;
         }
 
 
-        /* JOB CARDS */
+        /* ================= JOB CHART ================= */
+
+        .chart {
+            margin-top: 25px;
+        }
+
+        .chart-row {
+            margin-bottom: 24px;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .chart-label strong {
+            color: #334155;
+        }
+
+        .chart-label span {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .bar {
+            width: 100%;
+            height: 18px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(
+                90deg,
+                #2563eb,
+                #7c3aed
+            );
+            border-radius: 20px;
+            transition: width 1s ease;
+        }
+
+
+/* ================= JOB MATCH CHART ================= */
+
+.chart-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.chart-header h2 {
+    margin-bottom: 6px;
+}
+
+.chart-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.chart-badge {
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}
+
+
+.job-chart {
+    margin-top: 10px;
+}
+
+
+.chart-item {
+    margin-bottom: 25px;
+}
+
+
+.chart-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+}
+
+
+.job-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+
+.rank {
+    width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.job-percentage {
+    font-weight: bold;
+
+    color: #2563eb;
+
+    font-size: 15px;
+}
+
+
+.bar-container {
+    width: 100%;
+
+    height: 14px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.bar-fill {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    transition: width 1.2s ease;
+
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+
+.empty-chart {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #64748b;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
+}
+
+        /* ================= JOB RECOMMENDATIONS ================= */
 
         .job-card {
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            border-left: 5px solid #7c3aed;
+            background: #faf7ff;
             padding: 18px;
             margin-bottom: 15px;
+            border-radius: 10px;
         }
 
         .job-title {
             font-size: 20px;
             font-weight: bold;
+            color: #4c1d95;
         }
 
-        .match {
+        .match-score {
             margin-top: 8px;
+            font-size: 17px;
             font-weight: bold;
+            color: #2563eb;
         }
 
         .required {
-            color: #666;
-            margin-top: 8px;
+            margin-top: 10px;
+            color: #64748b;
+            line-height: 1.5;
         }
 
 
-        /* TWO COLUMNS */
+        /* ================= SKILL GAP ================= */
 
-        .columns {
+        .skill-gap {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
         }
 
-        .matching {
-            background: #eefaf1;
+        .matching-box,
+        .missing-box {
+            padding: 22px;
+            border-radius: 15px;
         }
 
-        .missing {
-            background: #fff2f2;
+        .matching-box {
+            background: #ecfdf5;
+            border: 1px solid #86efac;
         }
 
-        .skill-list {
-            padding-left: 20px;
+        .matching-box h3 {
+            color: #15803d;
+        }
+
+        .missing-box {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+        }
+
+        .missing-box h3 {
+            color: #c2410c;
         }
 
         .skill-list li {
-            margin-bottom: 8px;
+            margin: 10px 0;
         }
 
 
-        /* RESUME TEXT */
+        /* ================= RESUME TEXT ================= */
 
         .resume-text {
-            background: #f8f8f8;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             padding: 20px;
-            border-radius: 10px;
-            line-height: 1.6;
+            border-radius: 12px;
             white-space: pre-wrap;
-            max-height: 350px;
+            line-height: 1.6;
+            max-height: 300px;
             overflow-y: auto;
         }
 
 
-        /* BUTTON */
+        /* ================= BUTTON ================= */
 
         .button-container {
             text-align: center;
-            margin: 35px 0;
+            margin-top: 30px;
         }
 
         .button {
             display: inline-block;
-            padding: 14px 28px;
             background: #2563eb;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .button:hover {
             background: #1d4ed8;
+            transform: translateY(-2px);
         }
 
 
-        /* MOBILE */
+        /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 750px) {
 
-            .columns {
+            .top-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-gap {
                 grid-template-columns: 1fr;
             }
 
             .header h1 {
-                font-size: 28px;
+                font-size: 30px;
             }
 
             .score {
@@ -197,6 +597,382 @@
 
         }
 
+        
+
+        /* ================= EXTRACTED RESUME ================= */
+
+.resume-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.resume-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.resume-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dbeafe;
+    border-radius: 14px;
+
+    font-size: 25px;
+}
+
+.resume-header h2 {
+    margin: 0;
+    color: #1e293b;
+}
+
+.resume-header p {
+    margin: 5px 0 0;
+    color: #64748b;
+}
+
+
+.resume-paper {
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    max-height: 380px;
+
+    overflow-y: auto;
+}
+
+
+.paper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.paper-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.paper-status {
+    background: #dcfce7;
+    color: #15803d;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.paper-line {
+    height: 1px;
+    background: #e2e8f0;
+
+    margin-bottom: 20px;
+}
+
+.resume-content {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    border-left: 4px solid #2563eb;
+
+    white-space: pre-wrap;
+
+    line-height: 1.7;
+
+    color: #475569;
+
+    font-size: 15px;
+}
+
+/* ================= RESUME SCORE CIRCLE ================= */
+
+.score-circle {
+    --size: 180px;
+
+    width: var(--size);
+    height: var(--size);
+
+    margin: 20px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        conic-gradient(
+            #2563eb calc(var(--score) * 1%),
+            #e2e8f0 0
+        );
+
+    position: relative;
+}
+
+
+.score-circle::before {
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+
+.score-circle-inner {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+.score-number {
+    font-size: 42px;
+
+    font-weight: bold;
+
+    color: #1e3a8a;
+}
+
+
+.score-total {
+    font-size: 14px;
+
+    color: #64748b;
+
+    margin-top: -5px;
+}
+
+
+.score-status {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+.excellent {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+
+.good {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+
+.average {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+
+.poor {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ================= SKILL GAP ANALYSIS ================= */
+
+.skill-gap {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+
+.skill-box {
+    padding: 25px;
+
+    border-radius: 16px;
+
+    border: 1px solid #e2e8f0;
+}
+
+
+.skill-box.matching {
+    background: #f0fdf4;
+
+    border-color: #bbf7d0;
+}
+
+
+.skill-box.missing {
+    background: #fff7ed;
+
+    border-color: #fed7aa;
+}
+
+
+.skill-box-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+.skill-box-header h3 {
+    margin: 0;
+
+    font-size: 19px;
+
+    color: #1e293b;
+}
+
+
+.skill-box-header p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.skill-box-icon {
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+.matching .skill-box-icon {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+
+.missing .skill-box-icon {
+    background: #ffedd5;
+
+    color: #c2410c;
+}
+
+
+.skill-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.skill-tag {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 14px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.skill-tag.match {
+    background: white;
+
+    color: #15803d;
+
+    border: 1px solid #bbf7d0;
+}
+
+
+.skill-tag.missing-tag {
+    background: white;
+
+    color: #c2410c;
+
+    border: 1px solid #fed7aa;
+}
+
+
+.skill-tag span {
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+
+.no-skills {
+    color: #64748b;
+
+    font-size: 14px;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+}
+
     </style>
 
 </head>
@@ -204,54 +980,187 @@
 
 <body>
 
-
 <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
 
     <div class="header">
 
-        <h1>
-            AI Resume Analysis
-        </h1>
+        <h1>🤖 AI Resume Analyzer</h1>
 
         <p>
-            Here's what our AI found in your resume.
+            AI-powered resume analysis and career recommendations
         </p>
 
     </div>
 
 
+    <!-- ================= SCORE + BEST JOB ================= -->
 
-    <!-- RESUME SCORE -->
+    <div class="top-cards">
 
-    <div class="score-card">
 
-        <div class="score-label">
-            Overall Resume Score
+        <!-- RESUME SCORE -->
+
+       <div class="card score-card">
+
+    <h3>📊 Resume Score</h3>
+
+    <div class="score-circle"
+         style="--score: {{ resume_score }};">
+
+        <div class="score-circle-inner">
+
+            <div class="score-number">
+                {{ resume_score }}
+            </div>
+
+            <div class="score-total">
+                / 100
+            </div>
+
         </div>
 
-        <div class="score">
-            {{ resume_score }}/100
+    </div>
+
+    {% if resume_score >= 80 %}
+
+        <div class="score-status excellent">
+            Excellent Resume
         </div>
 
-        <p>
-            Your score is based on skills,
-            resume content and job compatibility.
-        </p>
+    {% elif resume_score >= 60 %}
+
+        <div class="score-status good">
+            Good Resume
+        </div>
+
+    {% elif resume_score >= 40 %}
+
+        <div class="score-status average">
+            Needs Improvement
+        </div>
+
+    {% else %}
+
+        <div class="score-status poor">
+            Needs Major Improvement
+        </div>
+
+    {% endif %}
+
+    <p>
+        Your score is based on skills, resume content
+        and job compatibility.
+    </p>
+
+</div>
+
+
+        <!-- BEST JOB -->
+
+       <div class="card best-job">
+
+    <div class="best-job-header">
+
+        <div class="best-job-icon">
+            🏆
+        </div>
+
+        <div>
+            <h3>Best Job Match</h3>
+
+            <p>
+                Recommended based on your resume
+            </p>
+        </div>
 
     </div>
 
 
+    {% if recommendations %}
 
-    <!-- DETECTED SKILLS -->
+        <div class="best-job-name">
+            {{ recommendations[0]["job_title"] }}
+        </div>
+
+
+        <div class="best-match-score">
+
+            <span>
+                {{ "%.2f"|format(
+                    recommendations[0]["match_score"]
+                ) }}%
+            </span>
+
+            <small>
+                Match
+            </small>
+
+        </div>
+
+
+        <div class="best-job-progress">
+
+            <div
+                class="best-job-progress-fill"
+                data-score="{{ recommendations[0]['match_score'] }}">
+            </div>
+
+        </div>
+
+
+        <div class="best-job-reason">
+
+            <strong>Why this job?</strong>
+
+            <p>
+                Your resume has a strong similarity with the
+                skills and requirements of this job role.
+            </p>
+
+        </div>
+
+
+        <div class="best-job-skills">
+
+            <strong>Required Skills</strong>
+
+            <div class="mini-skills">
+
+                {% for skill in recommendations[0]["required_skills"].split()[:6] %}
+
+                    <span>
+                        {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+    {% else %}
+
+        <p>
+            No recommendation available.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+    </div>
+
+
+    <!-- ================= DETECTED SKILLS ================= -->
 
     <div class="section">
 
-        <h2>
-            🧠 Detected Skills
-        </h2>
+        <h2>🧠 Detected Skills</h2>
 
         {% if skills %}
 
@@ -260,7 +1169,9 @@
                 {% for skill in skills %}
 
                     <span class="skill">
+
                         {{ skill }}
+
                     </span>
 
                 {% endfor %}
@@ -278,32 +1189,129 @@
     </div>
 
 
+    <!-- ================= JOB MATCH CHART ================= -->
 
-    <!-- JOB RECOMMENDATIONS -->
+<div class="section">
 
-    <div class="section">
+    <div class="chart-header">
 
-        <h2>
-            🎯 Top 5 Job Recommendations
-        </h2>
+        <div>
 
-        {% if recommendations %}
+            <h2>📊 Job Match Comparison</h2>
+
+            <p>
+                How strongly your resume matches each recommended job role.
+            </p>
+
+        </div>
+
+        <div class="chart-badge">
+            AI MATCH
+        </div>
+
+    </div>
+
+
+    {% if recommendations %}
+
+        <div class="job-chart">
 
             {% for job in recommendations %}
 
+                <div class="chart-item">
+
+
+                    <!-- JOB NAME -->
+
+                    <div class="chart-info">
+
+                        <div class="job-name">
+
+                            <span class="rank">
+                                {{ loop.index }}
+                            </span>
+
+                            {{ job["job_title"] }}
+
+                        </div>
+
+
+                        <div class="job-percentage">
+
+                            {{ "%.2f"|format(
+                                job["match_score"]
+                            ) }}%
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BAR -->
+
+                    <div class="bar-container">
+
+                        <div
+                            class="bar-fill"
+                            data-score="{{ job['match_score'] }}"
+                        >
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-chart">
+
+            No job recommendations available.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+    <!-- ================= JOB RECOMMENDATIONS ================= -->
+
+    <div class="section">
+
+        <h2>🎯 Top Job Recommendations</h2>
+
+
+         {% if recommendations %}
+
+                {% for job in recommendations %}
+
+
                 <div class="job-card">
 
+
                     <div class="job-title">
-                        {{ loop.index }}.
-                        {{ job.job_title }}
+
+                        #{{ loop.index }}
+
+                        {{ job["job_title"] }}
+
                     </div>
 
-                    <div class="match">
+
+                    <div class="match-score">
 
                         Match Score:
-                        {{ "%.2f"|format(job.match_score) }}%
+
+                         {{ "%.2f"|format(job["match_score"]) }}%
 
                     </div>
+
 
                     <div class="required">
 
@@ -311,13 +1319,16 @@
                             Required Skills:
                         </strong>
 
-                        {{ job.required_skills }}
+                        {{ job["required_skills"] }}
 
                     </div>
 
+
                 </div>
 
+
             {% endfor %}
+
 
         {% else %}
 
@@ -330,101 +1341,185 @@
     </div>
 
 
+    <!-- ================= SKILL GAP ================= -->
 
-    <!-- SKILL GAP -->
+   <!-- ================= SKILL GAP ANALYSIS ================= -->
 
-    <div class="section">
+<div class="section">
 
-        <h2>
-            📊 Skill Gap Analysis
-        </h2>
+    <div class="chart-header">
 
-        <div class="columns">
+        <div>
 
+            <h2>🧠 Skill Gap Analysis</h2>
 
-            <!-- MATCHING -->
+            <p>
+                Skills detected in your resume and skills you can improve.
+            </p>
 
-            <div class="section matching">
+        </div>
 
-                <h3>
-                    ✅ Matching Skills
-                </h3>
-
-                {% if matching_skills %}
-
-                    <ul class="skill-list">
-
-                        {% for skill in matching_skills %}
-
-                            <li>
-                                {{ skill }}
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                {% else %}
-
-                    <p>
-                        No matching skills found.
-                    </p>
-
-                {% endif %}
-
-            </div>
-
-
-
-            <!-- MISSING -->
-
-            <div class="section missing">
-
-                <h3>
-                    ❌ Missing Skills
-                </h3>
-
-                {% if missing_skills %}
-
-                    <ul class="skill-list">
-
-                        {% for skill in missing_skills %}
-
-                            <li>
-                                {{ skill }}
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                {% else %}
-
-                    <p>
-                        Excellent! No major missing
-                        skills detected.
-                    </p>
-
-                {% endif %}
-
-            </div>
-
-
+        <div class="chart-badge">
+            AI ANALYSIS
         </div>
 
     </div>
 
 
+    <div class="skill-gap">
 
-    <!-- RESUME TEXT -->
 
-    <div class="section">
+        <!-- MATCHING SKILLS -->
 
-        <h2>
-            📄 Extracted Resume Text
-        </h2>
+        <div class="skill-box matching">
 
-        <div class="resume-text">
+            <div class="skill-box-header">
+
+                <div class="skill-box-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>Matching Skills</h3>
+
+                    <p>
+                        Skills already present in your resume
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if matching_skills %}
+
+                <div class="skill-tags">
+
+                    {% for skill in matching_skills %}
+
+                        <div class="skill-tag match">
+
+                            <span>✓</span>
+
+                            {{ skill }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <p class="no-skills">
+                    No matching skills detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- MISSING SKILLS -->
+
+        <div class="skill-box missing">
+
+            <div class="skill-box-header">
+
+                <div class="skill-box-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <h3>Skills to Improve</h3>
+
+                    <p>
+                        Skills that can improve your job match
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if missing_skills %}
+
+                <div class="skill-tags">
+
+                    {% for skill in missing_skills %}
+
+                        <div class="skill-tag missing-tag">
+
+                            <span>+</span>
+
+                            {{ skill }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <p class="no-skills">
+                    Excellent! No major skill gaps detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+</div>
+    </div>
+
+
+    <!-- ================= EXTRACTED RESUME ================= -->
+
+<div class="resume-section">
+
+    <div class="resume-header">
+
+        <div class="resume-icon">
+            📄
+        </div>
+
+        <div>
+            <h2>Extracted Resume</h2>
+
+            <p>
+                Resume content extracted successfully using AI.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="resume-paper">
+
+        <div class="paper-header">
+
+            <div class="paper-title">
+                Resume Preview
+            </div>
+
+            <div class="paper-status">
+                ✓ Analyzed
+            </div>
+
+        </div>
+
+
+        <div class="paper-line"></div>
+
+
+        <div class="resume-content">
 
             {{ resume_text }}
 
@@ -432,20 +1527,68 @@
 
     </div>
 
-
-
-    <!-- BUTTON -->
+</div>
+    <!-- ================= BACK BUTTON ================= -->
 
     <div class="button-container">
 
         <a href="/" class="button">
-            Analyze Another Resume
+
+            ← Analyze Another Resume
+
         </a>
 
     </div>
 
 
 </div>
+
+
+<!-- ================= CHART ANIMATION ================= -->
+
+<script>
+    
+    const bestJobBar =
+        document.querySelector(".best-job-progress-fill");
+
+    if (bestJobBar) {
+
+        const score = parseFloat(
+            bestJobBar.getAttribute("data-score")
+        );
+
+        setTimeout(function() {
+
+            bestJobBar.style.width = score + "%";
+
+        }, 300);
+
+    }
+
+
+    const bars =
+        document.querySelectorAll(".bar-fill");
+
+    bars.forEach(function(bar, index) {
+
+        const score = parseFloat(
+            bar.getAttribute("data-score")
+        );
+
+        if (!isNaN(score)) {
+
+            setTimeout(function() {
+
+                bar.style.width = score + "%";
+
+            }, index * 150);
+
+        }
+
+    });
+
+
+</script>
 
 
 </body>
